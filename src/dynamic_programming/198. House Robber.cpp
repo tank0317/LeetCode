@@ -27,15 +27,14 @@ public:
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        int a = 0;
-        int b = 0;
+        int pre = 0;
+        int cur = 0;
         for(int i=0; i<nums.size(); i++){
-            if(i%2 == 0){
-                a = max(a+nums[i], b);
-            }else{
-                b = max(b+nums[i], a);
-            }
+            int tmp = max(pre+nums[i], cur);
+            pre = cur;
+            cur = tmp;
         }
-        return max(a, b);
+        return cur;
     }
 };
+
